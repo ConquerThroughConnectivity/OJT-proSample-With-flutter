@@ -13,24 +13,35 @@ final String now =df.format(DateTime.now());
 
 final description = [
     new ActivityDescription(
-      title: 'OJT $now',
       description: 'Hooray for the first objective',
       date: now.toString(),
     ),
     new ActivityDescription(
-      title: 'OJT $now',
       description: 'Hooray for the second objective',
       date: now.toString(),
     ),
     new ActivityDescription(
-      title: 'OJT $now',
       description: 'Hooray for the third objective',
       date: now.toString(),
     ),
     new ActivityDescription(
-      title: 'OJT $now',
       description: 'Hooray for the fourth objective',
       date: now.toString(),
+    ),
+  ];
+
+  final title =[
+    new ActivityTitle(
+      title: "OJT-PRO $now",
+    ),
+    new ActivityTitle(
+      title: "Software Debugging $now",
+    ),
+    new ActivityTitle(
+      title: "Creating HTML TO PDF $now",
+    ),
+    new ActivityTitle(
+      title: "Planning the show $now",
     ),
   ];
 
@@ -104,7 +115,7 @@ class ActivityState extends State<Activity> {
                   ],
                   
                   trailing: Icon(Icons.arrow_drop_down, color: Color(0xFF354458),),
-                  title: Text('${description[index].title}',style: TextStyle(
+                  title: Text('${title[index].title}',style: TextStyle(
                   fontFamily: 'Poppins-Bold',
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
