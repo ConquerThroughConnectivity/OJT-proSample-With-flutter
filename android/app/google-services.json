@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "740581026879",
+    "firebase_url": "https://ojt-pro-db.firebaseio.com",
+    "project_id": "ojt-pro-db",
+    "storage_bucket": "ojt-pro-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740581026879:android:4a7014b07f74b79e819c8a",
+        "android_client_info": {
+          "package_name": "com.example.testing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "740581026879-bhvhd2mv7qgnl4hm33q4211ujfe9kii0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ0_uUpk9URQ5NZ1Zyx2HUyfcV0M4D2Zs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "740581026879-bhvhd2mv7qgnl4hm33q4211ujfe9kii0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
