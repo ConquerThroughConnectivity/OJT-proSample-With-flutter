@@ -89,6 +89,7 @@ class ActivityState extends State<Activity> {
                   initiallyExpanded: false,
                   children: <Widget>[ 
                       ListView.builder(
+                        physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: description.length,
                         itemBuilder: (BuildContext context, int i){
