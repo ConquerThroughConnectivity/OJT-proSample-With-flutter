@@ -1,32 +1,59 @@
 import 'dart:ui';
-
-
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:blinking_point/blinking_point.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:testing/src/screens/Account/Account.dart';
 import 'package:testing/src/screens/Activities/Activities.dart';
+import 'package:testing/src/screens/Home/announcement_list.dart';
 import 'package:testing/src/screens/Messaging/Messaging.dart';
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 final double defaultScreenWidth = 420.0;
 final double defaultScreenHeight = 820.0;
 final String val ="2:00";
 
-
+final annoucement =[
+    new Announcement(
+      description: 'Pesla Meeting/ Pesla Seminar',
+      time:'4:30 PM',
+      isImportant: true,
+    ),
+    new Announcement(
+      description: 'Pesla Meeting/ Pesla Seminar',
+      time:'5:30 PM',
+      isImportant: false,
+    ),
+    new Announcement(
+      description: 'Pesla Meeting/ Pesla Seminar',
+      time:'5:30 PM',
+      isImportant: true,
+    ),
+    new Announcement(
+      description: 'Pesla Meeting/ Pesla Seminar',
+      time:'4:30 PM',
+      isImportant: true,
+    ),
+    new Announcement(
+      description: 'Pesla Meeting/ Pesla Seminar',
+      time:'4:30 PM',
+      isImportant: false,
+    ),
+    new Announcement(
+      description: 'Pesla Meeting/ Pesla Seminar',
+      time:'4:30 PM',
+      isImportant: false,
+    ),
+    new Announcement(
+      description: 'Pesla Meeting/ Pesla Seminar',
+      time:'4:30 PM',
+      isImportant: true,
+    ),
+    new Announcement(
+      description: 'Pesla Meeting/ Pesla Seminar',
+      time:'4:30 PM',
+      isImportant: false,
+    ),
+  ];
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -44,14 +71,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-
-
-
-
-
-
 class Profile extends StatefulWidget {
+  @override
+  _ProfileState createState() => _ProfileState();
 
   @override
   Widget build(BuildContext context) {
@@ -62,18 +84,8 @@ class Profile extends StatefulWidget {
   )..init(context);
 
 }
-  @override
-  _ProfileState createState() => _ProfileState();
-
 }
 class _ProfileState extends State<Profile> {
-
- 
-
-
-
-
-
   int selectedIndex =0;
 
   Widget callPages(int currentIndex, BuildContext context){
@@ -93,16 +105,6 @@ class _ProfileState extends State<Profile> {
 
 
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor:  Color(0xFF2d3447),
-      appBar: appbar(),
-         body: callPages(selectedIndex,context),
-         bottomNavigationBar:botomBar(),
-    );
-    
-  }
 
 
   Widget botomBar(){
@@ -142,17 +144,19 @@ class _ProfileState extends State<Profile> {
       )
   ); 
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor:  Color(0xFF2d3447),
+      appBar: appbar(),
+         body: callPages(selectedIndex,context),
+         bottomNavigationBar:botomBar(),
+    );
+    
+  }
 }
  
-
-
-
-
-
-
-
-
-
 Widget blinking(){
   if(val =="2:00"){
           return new Container(
@@ -176,10 +180,7 @@ Widget blinking(){
           ),
       );
   }
-  
 }
-
-
 
 
 Widget body(BuildContext context){
@@ -192,8 +193,8 @@ Widget body(BuildContext context){
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 ClipPath(
-            clipper: CustomShapeClipper(),
-            child: Container(
+              clipper: CustomShapeClipper(),
+              child: Container(
               width:ScreenUtil.instance.setWidth(450.0),
               height: ScreenUtil.instance.setWidth(200.0),
               decoration: BoxDecoration(
@@ -273,53 +274,23 @@ Widget body(BuildContext context){
                         elevation: 4.0,
                         child: Padding(
                           padding: EdgeInsets.all(ScreenUtil.instance.setWidth(25.0)),
-                          child: ListView(
-                            physics:BouncingScrollPhysics(),
-                            children: <Widget>[
-                              list(context,
-                              'Pesla Meeting/ Pesla Seminar','#Important Update',
-                              Color(0xFFff726f), 
-                              Icon(Icons.notification_important,size: 50,)
-                              ), 
-                              list(context,
-                              'Class Meeting 4:30 PM','#Regular Update', 
-                              Color(0xFF786fff), 
-                              Icon(Icons.notifications,size: 50,)
+                          child: ListView.builder(
+                                physics: BouncingScrollPhysics(),
+                                shrinkWrap: true,
+                                  itemCount: annoucement.length,
+                                  itemBuilder: (BuildContext context, int index){
+                                    return list(context, '${annoucement[index].description}'+" "+'${annoucement[index].time}', 
+                                    '${annoucement[index].isImportant == true ? '#Important Update' : '#Regular Update'}',
+                                     annoucement[index].isImportant ==true ? Color(0xFFff726f) : Color(0xFF786fff), Icon(Icons.notification_important,size: 50,)
+                                    );
+                                  },
                               ),
-                              list(context,
-                              'Class Meeting 4:30 PM','#Regular Update', 
-                              Color(0xFF786fff), 
-                              Icon(Icons.notifications,size: 50,)
-                              ),
-                              list(context,
-                              'Class Meeting 4:30 PM','#Regular Update', 
-                              Color(0xFF786fff), 
-                              Icon(Icons.notifications,size: 50,)
-                              ),
-                              list(context,
-                              'Class Meeting 4:30 PM','#Regular Update', 
-                              Color(0xFF786fff), 
-                              Icon(Icons.notifications,size: 50,)
-                              ),
-                              list(context,'Graduation Seminar','#Important Update',
-                              Color(0xFFff726f), 
-                              Icon(Icons.notification_important,size: 50,)
-                              ),
-                              list(context,'Class Meeting 5:30 PM','#Regular Update',
-                              Color(0xFF786fff), 
-                              Icon(Icons.notifications,size: 50,)
-                              ),
-                            ],
-                          ),
                         ),
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.only(bottom: 80.0),
-                    )
-                
-              
-              
+                    ),
                   ],
                 ),
               )
@@ -372,11 +343,7 @@ Widget cardFirst(BuildContext context){
       
 }
 
-
-
-
 Widget list(BuildContext context,String title, String subtitle,  Color colors, Icon icon, ){
-
   return Card(
       color: colors,
       child: ListTile(
@@ -389,17 +356,16 @@ Widget list(BuildContext context,String title, String subtitle,  Color colors, I
               fontWeight: FontWeight.bold,
               ),
               ),
-        subtitle: Text(subtitle, style: TextStyle(
+              subtitle: Text(subtitle, style: TextStyle(
               color: Colors.white54
               ),
               ),
-        trailing: IconButton(
-        icon: Icon(Icons.navigate_next,size: 30,),
-        color: Colors.white60,
-        onPressed: (){
-
-         setBottomSheet(context, title, subtitle);
-
+              
+              trailing: IconButton(
+              icon: Icon(Icons.navigate_next,size: 30,),
+              color: Colors.white60,
+              onPressed: (){
+              setBottomSheet(context, title, subtitle);
           },
         ),
       ),
@@ -603,8 +569,6 @@ class CustomShapeClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(CustomClipper oldClipper) => true;
-
-
 }
 
 
@@ -614,53 +578,6 @@ enum SpringButtonType {
 }
 
 class SpringButton extends StatefulWidget {
-  ///Use this value to determine the type of animation to be played.
-  final SpringButtonType springButtonType;
-
-  ///The widget that is to be displayed on your regular UI.
-  final Widget uiChild;
-
-  ///Set this to true if your [uiChild] doesn't change at runtime.
-  final bool useCache;
-
-  final Alignment alignment;
-
-  final GestureTapDownCallback onTapDown;
-  final GestureTapUpCallback onTapUp;
-  final GestureTapCallback onTap;
-  final GestureTapCancelCallback onTapCancel;
-  final GestureTapDownCallback onSecondaryTapDown;
-  final GestureTapUpCallback onSecondaryTapUp;
-  final GestureTapCancelCallback onSecondaryTapCancel;
-  final GestureTapCallback onDoubleTap;
-  final GestureLongPressCallback onLongPress;
-  final GestureLongPressStartCallback onLongPressStart;
-  final GestureLongPressMoveUpdateCallback onLongPressMoveUpdate;
-  final GestureLongPressUpCallback onLongPressUp;
-  final GestureLongPressEndCallback onLongPressEnd;
-  final GestureDragDownCallback onVerticalDragDown;
-  final GestureDragStartCallback onVerticalDragStart;
-  final GestureDragUpdateCallback onVerticalDragUpdate;
-  final GestureDragEndCallback onVerticalDragEnd;
-  final GestureDragCancelCallback onVerticalDragCancel;
-  final GestureDragDownCallback onHorizontalDragDown;
-  final GestureDragStartCallback onHorizontalDragStart;
-  final GestureDragUpdateCallback onHorizontalDragUpdate;
-  final GestureDragEndCallback onHorizontalDragEnd;
-  final GestureDragCancelCallback onHorizontalDragCancel;
-  final GestureDragDownCallback onPanDown;
-  final GestureDragStartCallback onPanStart;
-  final GestureDragUpdateCallback onPanUpdate;
-  final GestureDragEndCallback onPanEnd;
-  final GestureDragCancelCallback onPanCancel;
-  final GestureScaleStartCallback onScaleStart;
-  final GestureScaleUpdateCallback onScaleUpdate;
-  final GestureScaleEndCallback onScaleEnd;
-  final GestureForcePressStartCallback onForcePressStart;
-  final GestureForcePressPeakCallback onForcePressPeak;
-  final GestureForcePressUpdateCallback onForcePressUpdate;
-  final GestureForcePressEndCallback onForcePressEnd;
-
   const SpringButton(
     this.springButtonType,
     this.uiChild, {
@@ -703,6 +620,51 @@ class SpringButton extends StatefulWidget {
     this.onScaleUpdate,
     this.onScaleEnd,
   }) : super(key: key);
+
+  final Alignment alignment;
+  final GestureTapCallback onDoubleTap;
+  final GestureForcePressEndCallback onForcePressEnd;
+  final GestureForcePressPeakCallback onForcePressPeak;
+  final GestureForcePressStartCallback onForcePressStart;
+  final GestureForcePressUpdateCallback onForcePressUpdate;
+  final GestureDragCancelCallback onHorizontalDragCancel;
+  final GestureDragDownCallback onHorizontalDragDown;
+  final GestureDragEndCallback onHorizontalDragEnd;
+  final GestureDragStartCallback onHorizontalDragStart;
+  final GestureDragUpdateCallback onHorizontalDragUpdate;
+  final GestureLongPressCallback onLongPress;
+  final GestureLongPressEndCallback onLongPressEnd;
+  final GestureLongPressMoveUpdateCallback onLongPressMoveUpdate;
+  final GestureLongPressStartCallback onLongPressStart;
+  final GestureLongPressUpCallback onLongPressUp;
+  final GestureDragCancelCallback onPanCancel;
+  final GestureDragDownCallback onPanDown;
+  final GestureDragEndCallback onPanEnd;
+  final GestureDragStartCallback onPanStart;
+  final GestureDragUpdateCallback onPanUpdate;
+  final GestureScaleEndCallback onScaleEnd;
+  final GestureScaleStartCallback onScaleStart;
+  final GestureScaleUpdateCallback onScaleUpdate;
+  final GestureTapCancelCallback onSecondaryTapCancel;
+  final GestureTapDownCallback onSecondaryTapDown;
+  final GestureTapUpCallback onSecondaryTapUp;
+  final GestureTapCallback onTap;
+  final GestureTapCancelCallback onTapCancel;
+  final GestureTapDownCallback onTapDown;
+  final GestureTapUpCallback onTapUp;
+  final GestureDragCancelCallback onVerticalDragCancel;
+  final GestureDragDownCallback onVerticalDragDown;
+  final GestureDragEndCallback onVerticalDragEnd;
+  final GestureDragStartCallback onVerticalDragStart;
+  final GestureDragUpdateCallback onVerticalDragUpdate;
+  ///Use this value to determine the type of animation to be played.
+  final SpringButtonType springButtonType;
+
+  ///The widget that is to be displayed on your regular UI.
+  final Widget uiChild;
+
+  final bool useCache;
+  ///Set this to true if your [uiChild] doesn't change at runtime.
 
   @override
   SpringButtonState createState() => SpringButtonState(
@@ -748,56 +710,6 @@ class SpringButton extends StatefulWidget {
 }
 
 class SpringButtonState extends State<SpringButton> with SingleTickerProviderStateMixin {
-  final SpringButtonType springButtonType;
-  Widget uiChild;
-  final bool useCache;
-  final Alignment alignment;
-
-  final GestureTapDownCallback onTapDown;
-  final GestureTapUpCallback onTapUp;
-  final GestureTapCallback onTap;
-  final GestureTapCancelCallback onTapCancel;
-  final GestureTapDownCallback onSecondaryTapDown;
-  final GestureTapUpCallback onSecondaryTapUp;
-  final GestureTapCancelCallback onSecondaryTapCancel;
-  final GestureTapCallback onDoubleTap;
-  final GestureLongPressCallback onLongPress;
-  final GestureLongPressStartCallback onLongPressStart;
-  final GestureLongPressMoveUpdateCallback onLongPressMoveUpdate;
-  final GestureLongPressUpCallback onLongPressUp;
-  final GestureLongPressEndCallback onLongPressEnd;
-  final GestureDragDownCallback onVerticalDragDown;
-  final GestureDragStartCallback onVerticalDragStart;
-  final GestureDragUpdateCallback onVerticalDragUpdate;
-  final GestureDragEndCallback onVerticalDragEnd;
-  final GestureDragCancelCallback onVerticalDragCancel;
-  final GestureDragDownCallback onHorizontalDragDown;
-  final GestureDragStartCallback onHorizontalDragStart;
-  final GestureDragUpdateCallback onHorizontalDragUpdate;
-  final GestureDragEndCallback onHorizontalDragEnd;
-  final GestureDragCancelCallback onHorizontalDragCancel;
-  final GestureDragDownCallback onPanDown;
-  final GestureDragStartCallback onPanStart;
-  final GestureDragUpdateCallback onPanUpdate;
-  final GestureDragEndCallback onPanEnd;
-  final GestureDragCancelCallback onPanCancel;
-  final GestureScaleStartCallback onScaleStart;
-  final GestureScaleUpdateCallback onScaleUpdate;
-  final GestureScaleEndCallback onScaleEnd;
-  final GestureForcePressStartCallback onForcePressStart;
-  final GestureForcePressPeakCallback onForcePressPeak;
-  final GestureForcePressUpdateCallback onForcePressUpdate;
-  final GestureForcePressEndCallback onForcePressEnd;
-
-  ///The [AnimationController] used to create the spring effect.
-  AnimationController animationController;
-  Animation<double> animation;
-
-  bool isSpringDown = false;
-
-  ///Use this value to determine the depth of debug logging that is actually only here for myself and the Swiss scientists.
-  final int _debugLevel = 0;
-
   SpringButtonState(
     this.springButtonType,
     this.useCache,
@@ -839,6 +751,60 @@ class SpringButtonState extends State<SpringButton> with SingleTickerProviderSta
     this.onScaleEnd,
   );
 
+  ///The [AnimationController] used to create the spring effect.
+  final Alignment alignment;
+  Animation<double> animation;
+  AnimationController animationController;
+  bool isSpringDown = false;
+  final GestureTapCallback onDoubleTap;
+  final GestureForcePressEndCallback onForcePressEnd;
+  final GestureForcePressPeakCallback onForcePressPeak;
+  final GestureForcePressStartCallback onForcePressStart;
+  final GestureForcePressUpdateCallback onForcePressUpdate;
+  final GestureDragCancelCallback onHorizontalDragCancel;
+  final GestureDragDownCallback onHorizontalDragDown;
+  final GestureDragEndCallback onHorizontalDragEnd;
+  final GestureDragStartCallback onHorizontalDragStart;
+  final GestureDragUpdateCallback onHorizontalDragUpdate;
+  final GestureLongPressCallback onLongPress;
+  final GestureLongPressEndCallback onLongPressEnd;
+  final GestureLongPressMoveUpdateCallback onLongPressMoveUpdate;
+  final GestureLongPressStartCallback onLongPressStart;
+  final GestureLongPressUpCallback onLongPressUp;
+  final GestureDragCancelCallback onPanCancel;
+  final GestureDragDownCallback onPanDown;
+  final GestureDragEndCallback onPanEnd;
+  final GestureDragStartCallback onPanStart;
+  final GestureDragUpdateCallback onPanUpdate;
+  final GestureScaleEndCallback onScaleEnd;
+  final GestureScaleStartCallback onScaleStart;
+  final GestureScaleUpdateCallback onScaleUpdate;
+  final GestureTapCancelCallback onSecondaryTapCancel;
+  final GestureTapDownCallback onSecondaryTapDown;
+  final GestureTapUpCallback onSecondaryTapUp;
+  final GestureTapCallback onTap;
+  final GestureTapCancelCallback onTapCancel;
+  final GestureTapDownCallback onTapDown;
+  final GestureTapUpCallback onTapUp;
+  final GestureDragCancelCallback onVerticalDragCancel;
+  final GestureDragDownCallback onVerticalDragDown;
+  final GestureDragEndCallback onVerticalDragEnd;
+  final GestureDragStartCallback onVerticalDragStart;
+  final GestureDragUpdateCallback onVerticalDragUpdate;
+  final SpringButtonType springButtonType;
+  Widget uiChild;
+  final bool useCache;
+
+  ///Use this value to determine the depth of debug logging that is actually only here for myself and the Swiss scientists.
+  final int _debugLevel = 0;
+
+  @override
+  void dispose() {
+    animationController.dispose();
+
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -863,37 +829,38 @@ class SpringButtonState extends State<SpringButton> with SingleTickerProviderSta
     );
   }
 
-  @override
-  void dispose() {
-    animationController.dispose();
-
-    super.dispose();
-  }
-
   bool get hasMultiple {
     List<bool> list = [hasTap, hasSecondaryTap, hasDoubleTap, hasLongPress, hasVerticalDrag, hasHorizontalDrag, hasForcePress, hasPan, hasScale];
     return list.where((bool b) => b).length > 1;
   }
 
   bool get hasTap => onTapDown != null || onTapUp != null || onTap != null || onTapCancel != null;
+
   bool get hasSecondaryTap => onSecondaryTapDown != null || onSecondaryTapUp != null || onSecondaryTapCancel != null;
+
   bool get hasDoubleTap => onDoubleTap != null;
+
   bool get hasLongPress =>
       onLongPress != null || onLongPressStart != null || onLongPressMoveUpdate != null || onLongPressUp != null || onLongPressEnd != null;
+
   bool get hasVerticalDrag =>
       onVerticalDragDown != null ||
       onVerticalDragStart != null ||
       onVerticalDragUpdate != null ||
       onVerticalDragEnd != null ||
       onVerticalDragCancel != null;
+
   bool get hasHorizontalDrag =>
       onHorizontalDragDown != null ||
       onHorizontalDragStart != null ||
       onHorizontalDragUpdate != null ||
       onHorizontalDragEnd != null ||
       onHorizontalDragCancel != null;
+
   bool get hasForcePress => onForcePressStart != null || onForcePressPeak != null || onForcePressUpdate != null || onForcePressEnd != null;
+
   bool get hasPan => onPanDown != null || onPanStart != null || onPanUpdate != null || onPanCancel != null;
+
   bool get hasScale => onScaleStart != null || onScaleUpdate != null || onScaleEnd != null;
 
   void springDown() {
