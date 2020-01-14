@@ -274,8 +274,11 @@ Widget body(BuildContext context){
                         elevation: 4.0,
                         child: Padding(
                           padding: EdgeInsets.all(ScreenUtil.instance.setWidth(25.0)),
-                          child: ListView.builder(
-                                physics: BouncingScrollPhysics(),
+                          child: ListView(
+                            physics: BouncingScrollPhysics(),
+                            children: <Widget>[
+                              ListView.builder(
+                                physics: ScrollPhysics(),
                                 shrinkWrap: true,
                                   itemCount: annoucement.length,
                                   itemBuilder: (BuildContext context, int index){
@@ -285,6 +288,8 @@ Widget body(BuildContext context){
                                     );
                                   },
                               ),
+                            ],
+                          )
                         ),
                       ),
                     ),
@@ -304,9 +309,6 @@ Widget body(BuildContext context){
  
   
 }
-
-
-
 
 Widget cardFirst(BuildContext context){
   return 

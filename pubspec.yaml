@@ -34,7 +34,9 @@ dependencies:
   google_sign_in:
   intl: ^0.15.8
   flutter_slidable: "^0.5.4"
+  rflutter_alert: ^1.0.2
   
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
