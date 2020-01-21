@@ -89,7 +89,7 @@ class _ProfileState extends State<Profile> {
   int selectedIndex =0;
 
   Widget callPages(int currentIndex, BuildContext context){
-  switch(currentIndex){
+  switch(currentIndex){ 
       case 0:
       return body(context);
       case 1:
@@ -157,30 +157,6 @@ class _ProfileState extends State<Profile> {
   }
 }
  
-Widget blinking(){
-  if(val =="2:00"){
-          return new Container(
-          padding: EdgeInsets.only(left: ScreenUtil.instance.setWidth(300.0)),
-          child: new BlinkingPoint(
-          xCoor: 50.0,
-          yCoor: 100.0,
-          pointColor: Colors.white,
-          pointSize: 5.0,   
-          ),
-      );
-  }
-  else{
-        return new Container(
-          padding: EdgeInsets.only(left: ScreenUtil.instance.setWidth(300.0)),
-          child: new BlinkingPoint(
-          xCoor: 50.0,
-          yCoor: 100.0,
-          pointColor: Colors.red,
-          pointSize: 8.0,   
-          ),
-      );
-  }
-}
 
 
 Widget body(BuildContext context){
@@ -210,7 +186,15 @@ Widget body(BuildContext context){
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  blinking(),
+                      Container(
+                      padding: EdgeInsets.only(left: ScreenUtil.instance.setWidth(300.0)),
+                      child: new BlinkingPoint(
+                      xCoor: 50.0,
+                      yCoor: 100.0,
+                      pointColor: val =="2:00" ? Colors.white : Colors.red,
+                      pointSize: 5.0,   
+                      ),
+                  ),
                   new Container(
                   padding: EdgeInsets.only(top: ScreenUtil.instance.setWidth(80.0), left: ScreenUtil.instance.setWidth(20.0)),
                   child: Row(
@@ -362,7 +346,6 @@ Widget list(BuildContext context,String title, String subtitle,  Color colors, I
               color: Colors.white54
               ),
               ),
-              
               trailing: IconButton(
               icon: Icon(Icons.navigate_next,size: 30,),
               color: Colors.white60,
@@ -404,7 +387,7 @@ Widget list(BuildContext context,String title, String subtitle,  Color colors, I
                                   fontFamily: 'Poppins-Medium',
                                   fontSize:  ScreenUtil.instance.setSp(20.0),
                                   fontWeight: FontWeight.bold,
-                                  )                                
+                                  )                          
                                 ,),
                                 Text(subtitle,style: 
                                 TextStyle(
@@ -445,26 +428,26 @@ Widget expandedList(Color color, Text title){
 Widget card(String title, BuildContext context, Color color){
 return Stack(
   children: <Widget>[
-                        Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.only(top: 20 ,bottom: 20),
-                        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                        width: MediaQuery.of(context).size.width/2 -30,
-                        height: 70,
-                        decoration: BoxDecoration(
-                        color: color,
-                        borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(title, 
-                        style: TextStyle(color: Colors.white,fontSize: 18, fontFamily: 'Poppins-Medium',fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                       Positioned(
-                       top: -15,
-                       left: -20,
-                       child: Container(
-                       margin: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
-                       child: ClipRRect(
+                    Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(top: 20 ,bottom: 20),
+                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                    width: MediaQuery.of(context).size.width/2 -30,
+                    height: 70,
+                    decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(title, 
+                    style: TextStyle(color: Colors.white,fontSize: 18, fontFamily: 'Poppins-Medium',fontWeight: FontWeight.bold),
+                    ),
+                    ),
+                    Positioned(
+                    top: -15,
+                    left: -20,
+                    child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
+                    child: ClipRRect(
                        borderRadius: BorderRadius.only(),
                        child: Align(
                        alignment: Alignment.topLeft,
@@ -490,13 +473,6 @@ return Stack(
 }
 
 
-  
-
-
-
-
-
-
 
 Widget appbar(){
   return AppBar(
@@ -511,8 +487,7 @@ Widget appbar(){
           ),
         ),
         centerTitle: true,
-        title:  Container(
-                    
+        title: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.0),
                         color: Colors.black12

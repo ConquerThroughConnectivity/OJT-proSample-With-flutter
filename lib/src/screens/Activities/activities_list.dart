@@ -1,3 +1,7 @@
+
+
+import 'package:flutter/widgets.dart';
+
 class ActivityDescription{
   String id;
   String description;
@@ -8,8 +12,11 @@ class ActivityDescription{
 class ActivityTitle{
   String id;
   String title;
-  ActivityTitle({this.id, this.title});
+  String date;
+  Key key;
+  ActivityTitle({this.id, this.title, this.key, this.date});
 }
+
 
 
 

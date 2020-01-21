@@ -1,3 +1,4 @@
+
 class Announcement{
   String description;
   String time;
@@ -5,3 +6,9 @@ class Announcement{
   Announcement({this.description, this.time, this.isImportant});
   
 }
+
+
+
+
+
+

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:progress_button/progress_button.dart';
 import 'package:testing/src/screens/Home/home.dart';
 import 'package:testing/src/screens/Signup/signup.dart';
 
@@ -166,30 +167,22 @@ class _MyHomePageState extends State<MyHomePage> {
                               Padding(
                                 padding: EdgeInsets.only(top: ScreenUtil.instance.setWidth(35.0)),
                               ),
-                              RaisedButton(
-                                color: Color(0xFF2d3447),
-                                shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),  
-                                ),
-                                padding: EdgeInsets.all(16.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text('Login', style: TextStyle(
-                                      fontSize: ScreenUtil.instance.setSp(14.0),
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                    ),
-                                    )
-                                  ],
-                                ), 
-                              onPressed: () {
-                                onSubmit().then((FirebaseUser user){
+                              ProgressButton(
+                                buttonState: ButtonState.inProgress, 
+                                child: Text('Login',style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                  fontFamily: 'Poppins-Medium'
+                                  ),),
+                                onPressed: (){
+                                  onSubmit().then((FirebaseUser user){
                                   Navigator.push(context, MaterialPageRoute(builder: (context) =>Profile(),fullscreenDialog: true));
                                 }).catchError((e) => print(e));
-
                                 },
-                              ),
+                                backgroundColor: Color(0xFF2d3447),
+                                progressColor: Theme.of(context).primaryColor,      
+
+                              )
                             ],
                           ),
                         ),

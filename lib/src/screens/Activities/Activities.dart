@@ -1,7 +1,10 @@
 
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:testing/src/screens/Activities/activities_list.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -9,61 +12,23 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 final GlobalKey<AnimatedListState> listKey = GlobalKey();
 final df = new DateFormat('MM-dd-yyyy');
 final String now =df.format(DateTime.now());
+final TextEditingController activitytitle = new TextEditingController();
+final GlobalKey<AnimatedListState> animatedList = new GlobalKey();
+final TextEditingController textTitle = new TextEditingController();
+bool isClicked;
+int index;
 
 
-final description = [
-    new ActivityDescription(
-      description: 'Hooray for the first objective',
-      date: now.toString(),
-    ),
-    new ActivityDescription(
-      description: 'Hooray for the second objective',
-      date: now.toString(),
-    ),
-    new ActivityDescription(
-      description: 'Hooray for the third objective it is gonna be awesome though despite of struggles its a noob shit lorem ipsul dolor nepserutasd',
-      date: now.toString(),
-    ),
-    new ActivityDescription(
-      description: 'Hooray for the fourth objective',
-      date: now.toString(),
-    ),
-    new ActivityDescription(
-      description: 'Hooray for the fifth objective',
-      date: now.toString(),
-    ),
-    new ActivityDescription(
-      description: 'Hooray for the sixth objective',
-      date: now.toString(),
-    ),
-  ];
-
-
-
-  final title =[
-    new ActivityTitle(
-      title: "OJT-PRO, $now",
-    ),
-    new ActivityTitle(
-      title: "Software Debugging, $now",
-    ),
-    new ActivityTitle(
-      title: "Creating HTML TO PDF then learn how to flutter code with similarties in bloc architecture, $now",
-    ),
-    new ActivityTitle(
-      title: "Planning the show, $now",
-    ),
-    new ActivityTitle(
-      title: "Implementing bloc architecture, $now",
-    ),
-    new ActivityTitle(
-      title: "sex with co workers live, $now",
-    ),
-  ];
+final description =[];
+final title =[];
 
 class Activity extends StatefulWidget {
+  Activity({Key key}): super(key: key);
   @override
  State<StatefulWidget> createState(){
+
+  
+   
    return ActivityState();
  }
 }
@@ -76,19 +41,33 @@ class ActivityState extends State<Activity> {
         body: Stack(
             children: <Widget>[
               AnimatedList(
+              key: animatedList,
               physics: BouncingScrollPhysics(),
-              key: listKey,
-              initialItemCount: description.length,
-              itemBuilder: (BuildContext context, int index, Animation animation){
+              initialItemCount: title.length,
+              itemBuilder: (BuildContext context, index, Animation animation){
               return SizeTransition(
               axis: Axis.vertical,
               sizeFactor: animation,
               child: Card(
                   color: Color(0xFFECDFBD),
                   child: ExpansionTile(
+                  key: new Key(index.toString()),
                   initiallyExpanded: false,
                   children: <Widget>[ 
-                      ListView.builder(
+                        Container(
+                          width: ScreenUtil.getInstance().setHeight(470),
+                          child: FlatButton(
+                          child: Text('ADD description on this title',style: TextStyle(fontFamily: 'Poppins-Bold', color: Colors.white,)),
+                          color: Color(0xFF2d3447),
+                          onPressed: () async {
+                            setState(() {
+                              isClicked =false;
+                              alert(context, 'Description on this title', index);
+                            });
+                          },
+                        ),  
+                        ),            
+                       ListView.builder(
                         physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: description.length,
@@ -145,9 +124,8 @@ class ActivityState extends State<Activity> {
         ),
         floatingActionButton: GestureDetector(
             onTap: (){
-              setState(() {
-               
-              });
+            isClicked =true;
+            alert(context,"Activity this day", index);
             },
             child: Container(
               width: 90,
@@ -165,15 +143,69 @@ class ActivityState extends State<Activity> {
                     ),
                   Text('ADD',style: TextStyle(fontFamily: 'Poppins-Bold', color: Colors.white,)),
                 ],
-              )
+              ),
             ),
         ),
         
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
+    
   }
-}
+  popup(BuildContext context, bool isClicked){
+    if(isClicked ==false){
+      description.add(new ActivityDescription(description: textTitle.text));
+    }else if(isClicked ==true){
+      title.insert(0, new ActivityTitle(title: textTitle.text));
+      animatedList.currentState.insertItem(0);
+    }
+    
+  }
 
+  alert(BuildContext context, String alerttitle, int index){
+  return Alert(
+    context: context,
+    type: AlertType.info,
+    title: alerttitle,
+    content: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+      Center(
+        child:TextField(
+         controller: textTitle,
+         textAlign: TextAlign.center,
+         minLines: null,
+         keyboardType: TextInputType.multiline,
+         maxLines: 2,
+         decoration: InputDecoration.collapsed(
+           hintText: "Title",
+           hasFloatingPlaceholder: true
+         ),
+        
+       ),
+       
+      ),
+    ],),
+    buttons: [
+      DialogButton(
+        child: Text(
+          'Add Title', style: TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+            fontFamily: 'Poppins-Medium'
+          ),), 
+        onPressed: () async {
+          setState(() {
+          popup(context, isClicked);
+          Navigator.pop(context);
+          });
+        },
+        color: Color(0xFF354458),
+      ),
+    ],
+    closeFunction: () =>null,
+  ).show();
+}
+}
 
 
 
