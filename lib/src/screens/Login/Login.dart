@@ -182,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 backgroundColor: Color(0xFF2d3447),
                                 progressColor: Theme.of(context).primaryColor,      
 
-                              )
+                              ),
                             ],
                           ),
                         ),

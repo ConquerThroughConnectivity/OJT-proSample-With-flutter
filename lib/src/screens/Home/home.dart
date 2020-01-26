@@ -7,66 +7,66 @@ import 'package:testing/src/screens/Account/Account.dart';
 import 'package:testing/src/screens/Activities/Activities.dart';
 import 'package:testing/src/screens/Home/announcement_list.dart';
 import 'package:testing/src/screens/Messaging/Messaging.dart';
+import 'package:wave/config.dart';
+import 'package:wave/wave.dart';
 
 final double defaultScreenWidth = 420.0;
 final double defaultScreenHeight = 820.0;
-final String val ="2:00";
+final String val = "2:00";
 
-final annoucement =[
-    new Announcement(
-      description: 'Pesla Meeting/ Pesla Seminar',
-      time:'4:30 PM',
-      isImportant: true,
-    ),
-    new Announcement(
-      description: 'Pesla Meeting/ Pesla Seminar',
-      time:'5:30 PM',
-      isImportant: false,
-    ),
-    new Announcement(
-      description: 'Pesla Meeting/ Pesla Seminar',
-      time:'5:30 PM',
-      isImportant: true,
-    ),
-    new Announcement(
-      description: 'Pesla Meeting/ Pesla Seminar',
-      time:'4:30 PM',
-      isImportant: true,
-    ),
-    new Announcement(
-      description: 'Pesla Meeting/ Pesla Seminar',
-      time:'4:30 PM',
-      isImportant: false,
-    ),
-    new Announcement(
-      description: 'Pesla Meeting/ Pesla Seminar',
-      time:'4:30 PM',
-      isImportant: false,
-    ),
-    new Announcement(
-      description: 'Pesla Meeting/ Pesla Seminar',
-      time:'4:30 PM',
-      isImportant: true,
-    ),
-    new Announcement(
-      description: 'Pesla Meeting/ Pesla Seminar',
-      time:'4:30 PM',
-      isImportant: false,
-    ),
-  ];
+final annoucement = [
+  new Announcement(
+    description: 'Pesla Meeting/ Pesla Seminar',
+    time: '4:30 PM',
+    isImportant: true,
+  ),
+  new Announcement(
+    description: 'Pesla Meeting/ Pesla Seminar',
+    time: '5:30 PM',
+    isImportant: false,
+  ),
+  new Announcement(
+    description: 'Pesla Meeting/ Pesla Seminar',
+    time: '5:30 PM',
+    isImportant: true,
+  ),
+  new Announcement(
+    description: 'Pesla Meeting/ Pesla Seminar',
+    time: '4:30 PM',
+    isImportant: true,
+  ),
+  new Announcement(
+    description: 'Pesla Meeting/ Pesla Seminar',
+    time: '4:30 PM',
+    isImportant: false,
+  ),
+  new Announcement(
+    description: 'Pesla Meeting/ Pesla Seminar',
+    time: '4:30 PM',
+    isImportant: false,
+  ),
+  new Announcement(
+    description: 'Pesla Meeting/ Pesla Seminar',
+    time: '4:30 PM',
+    isImportant: true,
+  ),
+  new Announcement(
+    description: 'Pesla Meeting/ Pesla Seminar',
+    time: '4:30 PM',
+    isImportant: false,
+  ),
+];
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-     
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         canvasColor: Colors.transparent,
       ),
       home: Profile(),
-  
     );
   }
 }
@@ -78,345 +78,347 @@ class Profile extends StatefulWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(
-    width: defaultScreenWidth,
-    height: defaultScreenHeight,
-    allowFontScaling: true,
-  )..init(context);
-
-}
-}
-class _ProfileState extends State<Profile> {
-  int selectedIndex =0;
-
-  Widget callPages(int currentIndex, BuildContext context){
-  switch(currentIndex){ 
-      case 0:
-      return body(context);
-      case 1:
-      return  Activity();
-      case 2:
-      return  Messaging();
-      case 3:
-      return  Account();
-      break;
-      default: 
+      width: defaultScreenWidth,
+      height: defaultScreenHeight,
+      allowFontScaling: true,
+    )..init(context);
   }
 }
 
+class _ProfileState extends State<Profile> {
+  int selectedIndex = 0;
 
+  Widget callPages(int currentIndex, BuildContext context) {
+    switch (currentIndex) {
+      case 0:
+        return body(context);
+      case 1:
+        return Activity();
+      case 2:
+        return Messaging();
+      case 3:
+        return Account();
+        break;
+      default:
+    }
+  }
 
-
-
-  Widget botomBar(){
-    return  Container(
-      child: BottomNavyBar(
-        items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-            icon: Icon(Icons.apps), 
+  Widget botomBar() {
+    return Container(
+        child: BottomNavyBar(
+      items: <BottomNavyBarItem>[
+        BottomNavyBarItem(
+            icon: Icon(Icons.apps),
             title: Text('Home'),
-            activeColor: Color(0xFFff726f)
-          ),
-          BottomNavyBarItem(
+            activeColor: Color(0xFFff726f)),
+        BottomNavyBarItem(
             icon: Icon(Icons.local_activity),
             title: Text('Activities'),
-            activeColor: Color(0xFF786fff)
-          ),
-          BottomNavyBarItem(
-            icon: Icon(Icons.message), 
+            activeColor: Color(0xFF786fff)),
+        BottomNavyBarItem(
+            icon: Icon(Icons.message),
             title: Text('Messaging'),
-            activeColor: Color(0xFFff726f)
-          ),
-          BottomNavyBarItem(
-            icon: Icon(Icons.account_circle), 
+            activeColor: Color(0xFFff726f)),
+        BottomNavyBarItem(
+            icon: Icon(Icons.account_circle),
             title: Text('My Account'),
-            activeColor: Color(0xFF786fff)
-          ),
-        ], 
-        onItemSelected: (index) => setState(() {
-              selectedIndex = index;
-             
-        }),
-        selectedIndex: selectedIndex,
-        showElevation: true,
-        backgroundColor: Colors.transparent,
-        
-
-      )
-  ); 
+            activeColor: Color(0xFF786fff)),
+      ],
+      onItemSelected: (index) => setState(() {
+        selectedIndex = index;
+      }),
+      selectedIndex: selectedIndex,
+      showElevation: true,
+      backgroundColor: Colors.transparent,
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Color(0xFF2d3447),
+      backgroundColor: Color(0xFF2d3447),
       appBar: appbar(),
-         body: callPages(selectedIndex,context),
-         bottomNavigationBar:botomBar(),
+      body: callPages(selectedIndex, context),
+      bottomNavigationBar: botomBar(),
     );
-    
   }
 }
- 
 
-
-Widget body(BuildContext context){
+Widget body(BuildContext context) {
   return Stack(
     children: <Widget>[
-          SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: 
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                ClipPath(
-              clipper: CustomShapeClipper(),
-              child: Container(
-              width:ScreenUtil.instance.setWidth(450.0),
-              height: ScreenUtil.instance.setWidth(200.0),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end:  Alignment.bottomLeft,
-                  colors: <Color>[
-                    Colors.white12,
-                    Colors.black12,
-                  ]
-                ),    
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                      Container(
-                      padding: EdgeInsets.only(left: ScreenUtil.instance.setWidth(300.0)),
-                      child: new BlinkingPoint(
-                      xCoor: 50.0,
-                      yCoor: 100.0,
-                      pointColor: val =="2:00" ? Colors.white : Colors.red,
-                      pointSize: 5.0,   
-                      ),
-                  ),
-                  new Container(
-                  padding: EdgeInsets.only(top: ScreenUtil.instance.setWidth(80.0), left: ScreenUtil.instance.setWidth(20.0)),
-                  child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text('Time until next time-in: ', 
-                    style:  TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'Poppins-Medium',
-                    fontSize: ScreenUtil.instance.setSp(20.0),
-                    fontWeight: FontWeight.normal
+      SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              height: ScreenUtil.instance.setHeight(200.0),
+              width: double.infinity,
+              child: Card(
+                elevation: 16.0,
+                borderOnForeground: true,
+                color: Color(0xFF2d3447),
+                margin: EdgeInsets.only(
+                    right: ScreenUtil.instance.setWidth(19.0),
+                    left: ScreenUtil.instance.setWidth(16.0),
+                    top: ScreenUtil.instance.setWidth(16.0)),
+                clipBehavior: Clip.antiAlias,
+                child: ClipPath(
+                  clipper: CustomShapeClipper(),
+                  child: Container(
+                    width: ScreenUtil.instance.setWidth(450.0),
+                    height: ScreenUtil.instance.setWidth(200.0),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: <Color>[
+                            Colors.white12,
+                            Colors.black12,
+                          ]),
                     ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.only(
+                              left: ScreenUtil.instance.setWidth(300.0)),
+                          child: BlinkingPoint(
+                            xCoor: 50.0,
+                            yCoor: 100.0,
+                            pointColor:
+                                val == "2:00" ? Colors.red : Colors.white,
+                            pointSize: 5.0,
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(
+                              top: ScreenUtil.instance.setWidth(80.0),
+                              left: ScreenUtil.instance.setWidth(20.0)),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                'Time until next time-in: ',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Poppins-Medium',
+                                    fontSize: ScreenUtil.instance.setSp(20.0),
+                                    fontWeight: FontWeight.normal),
+                              ),
+                              Text(
+                                '$val',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Poppins-Medium',
+                                    fontSize: ScreenUtil.instance.setSp(20.0),
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    Text('$val', 
-                    style:  TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'Poppins-Medium',
-                    fontSize: ScreenUtil.instance.setSp(20.0),
-                    fontWeight: FontWeight.normal
-                    ),
-                    ),
-                    ],
                   ),
                 ),
-                  
-                ],
               ),
             ),
+            Container(
+              padding: EdgeInsets.only(top: ScreenUtil.instance.setWidth(10.0)),
             ),
-              Container(
-                padding: EdgeInsets.only(top: ScreenUtil.instance.setWidth(10.0)),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: ScreenUtil.instance.setWidth(15.0),right: ScreenUtil.instance.setWidth(15.0)),
-                child: cardFirst(context),
-              ),
-              Container(
-                padding: EdgeInsets.only(top: ScreenUtil.instance.setWidth(10.5)),
-                child: Column(
-                  children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(top: ScreenUtil.instance.setWidth(20.0), left: ScreenUtil.instance.setWidth(20.0), bottom: ScreenUtil.instance.setWidth(20.0)),
-                          child: Text('Announcements',
-                          style: TextStyle(
+            Container(
+              padding: EdgeInsets.only(
+                  left: ScreenUtil.instance.setWidth(15.0),
+                  right: ScreenUtil.instance.setWidth(15.0)),
+              child: cardFirst(context),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: ScreenUtil.instance.setWidth(10.5)),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(
+                        top: ScreenUtil.instance.setWidth(20.0),
+                        left: ScreenUtil.instance.setWidth(20.0),
+                        bottom: ScreenUtil.instance.setWidth(20.0)),
+                    child: Text('Announcements',
+                        style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Poppins-Medium',
                           fontSize: ScreenUtil.instance.setSp(30.0),
                           fontWeight: FontWeight.bold,
-                          )
-                          ),
+                        )),
+                  ),
+                  Container(
+                    width: 600,
+                    height: 600,
+                    child: Card(
+                      margin: EdgeInsets.only(
+                          left: ScreenUtil.instance.setWidth(20.0),
+                          right: ScreenUtil.instance.setWidth(20.0),
+                          top: ScreenUtil.instance.setWidth(5.0)),
+                      color: Color(0xFF2d3447).withOpacity(0.5),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                    Container(
-                      width: 600,
-                      height: 600,
-                      child: Card(
-                        margin: EdgeInsets.only(left: ScreenUtil.instance.setWidth(20.0), right: ScreenUtil.instance.setWidth(20.0), top: ScreenUtil.instance.setWidth(5.0)),
-                        color: Color(0xFF2d3447).withOpacity(0.5),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        elevation: 4.0,
-                        child: Padding(
-                          padding: EdgeInsets.all(ScreenUtil.instance.setWidth(25.0)),
+                      elevation: 4.0,
+                      child: Padding(
+                          padding: EdgeInsets.all(
+                              ScreenUtil.instance.setWidth(25.0)),
                           child: ListView(
                             physics: BouncingScrollPhysics(),
                             children: <Widget>[
                               ListView.builder(
                                 physics: ScrollPhysics(),
                                 shrinkWrap: true,
-                                  itemCount: annoucement.length,
-                                  itemBuilder: (BuildContext context, int index){
-                                    return list(context, '${annoucement[index].description}'+" "+'${annoucement[index].time}', 
-                                    '${annoucement[index].isImportant == true ? '#Important Update' : '#Regular Update'}',
-                                     annoucement[index].isImportant ==true ? Color(0xFFff726f) : Color(0xFF786fff), Icon(Icons.notification_important,size: 50,)
-                                    );
-                                  },
+                                itemCount: annoucement.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return list(
+                                      context,
+                                      '${annoucement[index].description}' +
+                                          " " +
+                                          '${annoucement[index].time}',
+                                      '${annoucement[index].isImportant == true ? '#Important Update' : '#Regular Update'}',
+                                      annoucement[index].isImportant == true
+                                          ? Color(0xFFff726f)
+                                          : Color(0xFF786fff),
+                                      Icon(
+                                        Icons.notification_important,
+                                        size: 50,
+                                      ));
+                                },
                               ),
                             ],
-                          )
-                        ),
-                      ),
+                          )),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(bottom: 80.0),
-                    ),
-                  ],
-                ),
-              )
-              ],
-            ),
-          ),
-          
-    ],
-  ); 
-   
- 
-  
-}
-
-Widget cardFirst(BuildContext context){
-  return 
-        Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-            SpringButton(SpringButtonType.OnlyScale, 
-            card('Time-In', context, Color(0xFFff726f)),
-            onTapDown: (_){
-
-            },
-            onLongPressEnd: (_){
-
-            },
-            onTap: (){
-
-            }, 
-            ),
-            
-            SpringButton(SpringButtonType.OnlyScale,
-            card('Total-Hours', context, Color(0xFF786fff)),
-            onTapDown:(_){
-
-            } , 
-            onLongPressEnd: (_){
-
-            },
-            onTap: (){
-
-            },
-            ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(bottom: 80.0),
+                  ),
                 ],
-              );
-      
-}
-
-Widget list(BuildContext context,String title, String subtitle,  Color colors, Icon icon, ){
-  return Card(
-      color: colors,
-      child: ListTile(
-        leading: icon,
-        title: Text(title,
-              style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Poppins-Medium',
-              fontSize:  ScreenUtil.instance.setSp(15.0),
-              fontWeight: FontWeight.bold,
               ),
-              ),
-              subtitle: Text(subtitle, style: TextStyle(
-              color: Colors.white54
-              ),
-              ),
-              trailing: IconButton(
-              icon: Icon(Icons.navigate_next,size: 30,),
-              color: Colors.white60,
-              onPressed: (){
-              setBottomSheet(context, title, subtitle);
-          },
+            )
+          ],
         ),
       ),
+    ],
   );
 }
 
+Widget cardFirst(BuildContext context) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: <Widget>[
+      SpringButton(
+        SpringButtonType.OnlyScale,
+        card('Time-In', context, Color(0xFFff726f)),
+        onTapDown: (_) {},
+        onLongPressEnd: (_) {},
+        onTap: () {},
+      ),
+      SpringButton(
+        SpringButtonType.OnlyScale,
+        card('Total-Hours', context, Color(0xFF786fff)),
+        onTapDown: (_) {},
+        onLongPressEnd: (_) {},
+        onTap: () {},
+      ),
+    ],
+  );
+}
 
- void setBottomSheet(BuildContext context, String title, String subtitle){
-      showModalBottomSheet(
-            context: context, 
-            builder: (BuildContext context) {
-             return Container(
-                height: 350,
-                color: Color(0xFF121621),
-                  child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.9),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                  ),
-                  child:Stack(
-                    children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.only(top:ScreenUtil.instance.setWidth(20)),
-                          child: Center(
-                              child:Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                                Text(title,style: 
-                                TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: 'Poppins-Medium',
-                                  fontSize:  ScreenUtil.instance.setSp(20.0),
-                                  fontWeight: FontWeight.bold,
-                                  )                          
-                                ,),
-                                Text(subtitle,style: 
-                                TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: 'Poppins-Medium',
-                                  fontSize:  ScreenUtil.instance.setSp(10.0),
-                                  fontWeight: FontWeight.bold,
-                                  )                                
-                                ,),
-                            ],
-                          ),
-                          ),
-                        )
-                    ],
-                  )
-                  
+Widget list(
+  BuildContext context,
+  String title,
+  String subtitle,
+  Color colors,
+  Icon icon,
+) {
+  return Card(
+    color: colors,
+    child: ListTile(
+      leading: icon,
+      title: Text(
+        title,
+        style: TextStyle(
+          color: Colors.white,
+          fontFamily: 'Poppins-Medium',
+          fontSize: ScreenUtil.instance.setSp(15.0),
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: TextStyle(color: Colors.white54),
+      ),
+      trailing: IconButton(
+        icon: Icon(
+          Icons.navigate_next,
+          size: 30,
+        ),
+        color: Colors.white60,
+        onPressed: () {
+          setBottomSheet(context, title, subtitle);
+        },
+      ),
+    ),
+  );
+}
+
+void setBottomSheet(BuildContext context, String title, String subtitle) {
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: 350,
+          color: Color(0xFF121621),
+          child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.9),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
                 ),
-                
-              
-                
-                
-             );
-            }
-           );
-  }
+              ),
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    padding:
+                        EdgeInsets.only(top: ScreenUtil.instance.setWidth(20)),
+                    child: Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            title,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Poppins-Medium',
+                              fontSize: ScreenUtil.instance.setSp(20.0),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            subtitle,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Poppins-Medium',
+                              fontSize: ScreenUtil.instance.setSp(10.0),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              )),
+        );
+      });
+}
 
-
-
-Widget expandedList(Color color, Text title){
+Widget expandedList(Color color, Text title) {
   return Card(
     color: color,
     child: ExpansionTile(
@@ -425,103 +427,99 @@ Widget expandedList(Color color, Text title){
   );
 }
 
-Widget card(String title, BuildContext context, Color color){
-return Stack(
-  children: <Widget>[
-                    Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.only(top: 20 ,bottom: 20),
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                    width: MediaQuery.of(context).size.width/2 -30,
-                    height: 70,
-                    decoration: BoxDecoration(
-                    color: color,
-                    borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text(title, 
-                    style: TextStyle(color: Colors.white,fontSize: 18, fontFamily: 'Poppins-Medium',fontWeight: FontWeight.bold),
-                    ),
-                    ),
-                    Positioned(
-                    top: -15,
-                    left: -20,
-                    child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
-                    child: ClipRRect(
-                       borderRadius: BorderRadius.only(),
-                       child: Align(
-                       alignment: Alignment.topLeft,
-                       heightFactor: 1,
-                       widthFactor: 1,
-                       child: Container(
-                          height: 30,
-                          width: 30,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10.0),
-                                topRight: Radius.circular(0.0),
-                                bottomRight: Radius.circular(40.0),
-                                bottomLeft: Radius.circular(0.0),
-                              )),
-                        )),
-                      ),
-                    ),
-                  ),
-  ],
-);
-}
-
-
-
-Widget appbar(){
-  return AppBar(
-        elevation: 0.0,
-        leading:  Container(
-        child: IconButton(
-        icon: Icon(Icons.menu),
-        color: Colors.white,
-        onPressed: (){
-          
-          },
+Widget card(String title, BuildContext context, Color color) {
+  return Stack(
+    children: <Widget>[
+      Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.only(top: 20, bottom: 20),
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+        width: MediaQuery.of(context).size.width / 2 - 30,
+        height: 70,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Text(
+          title,
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: 'Poppins-Medium',
+              fontWeight: FontWeight.bold),
+        ),
+      ),
+      Positioned(
+        top: -15,
+        left: -20,
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(),
+            child: Align(
+                alignment: Alignment.topLeft,
+                heightFactor: 1,
+                widthFactor: 1,
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10.0),
+                        topRight: Radius.circular(0.0),
+                        bottomRight: Radius.circular(40.0),
+                        bottomLeft: Radius.circular(0.0),
+                      )),
+                )),
           ),
         ),
-        centerTitle: true,
-        title: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        color: Colors.black12
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            child: Icon(Icons.location_on, color: Colors.white,)
-                          ),
-                           FittedBox(
-                            fit: BoxFit.fitWidth,
-                            child: Text('Deped Tagum City Division', 
-                            style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Poppins-Medium',
-                            fontSize: 10.0,
-                            fontWeight: FontWeight.normal
-                            )),
-                            )
-                        
-                        ],
-                      ),
-                    
-                  ),
-                    actions: <Widget>[
-                      IconButton(
-                        icon: Icon(Icons.notifications_active),
-                        color: Colors.white,
-                        onPressed: (){
+      ),
+    ],
+  );
+}
 
-                        },
-                      ),
-                    ],
+Widget appbar() {
+  return AppBar(
+    elevation: 0.0,
+    leading: Container(
+      child: IconButton(
+        icon: Icon(Icons.menu),
+        color: Colors.white,
+        onPressed: () {},
+      ),
+    ),
+    centerTitle: true,
+    title: Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0), color: Colors.black12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+              child: Icon(
+            Icons.location_on,
+            color: Colors.white,
+          )),
+          FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text('Deped Tagum City Division',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Poppins-Medium',
+                    fontSize: 10.0,
+                    fontWeight: FontWeight.normal)),
+          )
+        ],
+      ),
+    ),
+    actions: <Widget>[
+      IconButton(
+        icon: Icon(Icons.notifications_active),
+        color: Colors.white,
+        onPressed: () {},
+      ),
+    ],
   );
 }
 
@@ -533,12 +531,14 @@ class CustomShapeClipper extends CustomClipper<Path> {
 
     var firstEndPoint = Offset(size.width * .5, size.height - 30.0);
     var firstControlpoint = Offset(size.width * 0.25, size.height - 50.0);
-    path.quadraticBezierTo(firstControlpoint.dx, firstControlpoint.dy, firstEndPoint.dx, firstEndPoint.dy);
-    
+    path.quadraticBezierTo(firstControlpoint.dx, firstControlpoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
     var secondEndPoint = Offset(size.width, size.height - 80.0);
     var secondControlPoint = Offset(size.width * .75, size.height - 10);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy, secondEndPoint.dx, secondEndPoint.dy);
-    
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+
     path.lineTo(size.width, 0.0);
     path.close();
     return path;
@@ -547,7 +547,6 @@ class CustomShapeClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper oldClipper) => true;
 }
-
 
 enum SpringButtonType {
   OnlyScale,
@@ -634,6 +633,7 @@ class SpringButton extends StatefulWidget {
   final GestureDragEndCallback onVerticalDragEnd;
   final GestureDragStartCallback onVerticalDragStart;
   final GestureDragUpdateCallback onVerticalDragUpdate;
+
   ///Use this value to determine the type of animation to be played.
   final SpringButtonType springButtonType;
 
@@ -641,6 +641,7 @@ class SpringButton extends StatefulWidget {
   final Widget uiChild;
 
   final bool useCache;
+
   ///Set this to true if your [uiChild] doesn't change at runtime.
 
   @override
@@ -686,7 +687,8 @@ class SpringButton extends StatefulWidget {
       );
 }
 
-class SpringButtonState extends State<SpringButton> with SingleTickerProviderStateMixin {
+class SpringButtonState extends State<SpringButton>
+    with SingleTickerProviderStateMixin {
   SpringButtonState(
     this.springButtonType,
     this.useCache,
@@ -807,18 +809,39 @@ class SpringButtonState extends State<SpringButton> with SingleTickerProviderSta
   }
 
   bool get hasMultiple {
-    List<bool> list = [hasTap, hasSecondaryTap, hasDoubleTap, hasLongPress, hasVerticalDrag, hasHorizontalDrag, hasForcePress, hasPan, hasScale];
+    List<bool> list = [
+      hasTap,
+      hasSecondaryTap,
+      hasDoubleTap,
+      hasLongPress,
+      hasVerticalDrag,
+      hasHorizontalDrag,
+      hasForcePress,
+      hasPan,
+      hasScale
+    ];
     return list.where((bool b) => b).length > 1;
   }
 
-  bool get hasTap => onTapDown != null || onTapUp != null || onTap != null || onTapCancel != null;
+  bool get hasTap =>
+      onTapDown != null ||
+      onTapUp != null ||
+      onTap != null ||
+      onTapCancel != null;
 
-  bool get hasSecondaryTap => onSecondaryTapDown != null || onSecondaryTapUp != null || onSecondaryTapCancel != null;
+  bool get hasSecondaryTap =>
+      onSecondaryTapDown != null ||
+      onSecondaryTapUp != null ||
+      onSecondaryTapCancel != null;
 
   bool get hasDoubleTap => onDoubleTap != null;
 
   bool get hasLongPress =>
-      onLongPress != null || onLongPressStart != null || onLongPressMoveUpdate != null || onLongPressUp != null || onLongPressEnd != null;
+      onLongPress != null ||
+      onLongPressStart != null ||
+      onLongPressMoveUpdate != null ||
+      onLongPressUp != null ||
+      onLongPressEnd != null;
 
   bool get hasVerticalDrag =>
       onVerticalDragDown != null ||
@@ -834,11 +857,20 @@ class SpringButtonState extends State<SpringButton> with SingleTickerProviderSta
       onHorizontalDragEnd != null ||
       onHorizontalDragCancel != null;
 
-  bool get hasForcePress => onForcePressStart != null || onForcePressPeak != null || onForcePressUpdate != null || onForcePressEnd != null;
+  bool get hasForcePress =>
+      onForcePressStart != null ||
+      onForcePressPeak != null ||
+      onForcePressUpdate != null ||
+      onForcePressEnd != null;
 
-  bool get hasPan => onPanDown != null || onPanStart != null || onPanUpdate != null || onPanCancel != null;
+  bool get hasPan =>
+      onPanDown != null ||
+      onPanStart != null ||
+      onPanUpdate != null ||
+      onPanCancel != null;
 
-  bool get hasScale => onScaleStart != null || onScaleUpdate != null || onScaleEnd != null;
+  bool get hasScale =>
+      onScaleStart != null || onScaleUpdate != null || onScaleEnd != null;
 
   void springDown() {
     if (_debugLevel > 0) print("springDown");
@@ -1105,5 +1137,3 @@ class SpringButtonState extends State<SpringButton> with SingleTickerProviderSta
     );
   }
 }
-
-
