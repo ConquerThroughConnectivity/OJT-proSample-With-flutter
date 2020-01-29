@@ -7,8 +7,6 @@ import 'package:testing/src/screens/Account/Account.dart';
 import 'package:testing/src/screens/Activities/Activities.dart';
 import 'package:testing/src/screens/Home/announcement_list.dart';
 import 'package:testing/src/screens/Messaging/Messaging.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
 
 final double defaultScreenWidth = 420.0;
 final double defaultScreenHeight = 820.0;
