@@ -260,8 +260,8 @@ Widget body(BuildContext context) {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      elevation: 4.0,
-                      child: Padding(
+                      elevation: 5.0,
+                      child: Container(
                           padding: EdgeInsets.all(
                               ScreenUtil.instance.setWidth(25.0)),
                           child: ListView(

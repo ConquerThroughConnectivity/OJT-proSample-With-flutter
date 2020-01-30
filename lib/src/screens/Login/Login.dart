@@ -36,25 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
     username.dispose();
     password.dispose();
     super.dispose();
-  }
-
-  Future<FirebaseUser> onSubmit() async {
     final form = formkey.currentState;
     if (form.validate()) {
       form.save();
-      // try{
-      // AuthResult result = await FirebaseAuth.instance.signInWithEmailAndPassword(email: username.text, password: password.text,);
-      // final FirebaseUser user =result.user;
-
-      // assert(user !=null);
-      // assert(await user.getIdToken() !=null);
-
-      // final FirebaseUser currentuser = await auth.currentUser();
-      // assert(user.uid ==currentuser.uid);
-      // return user;
-      // }catch(e){
-      //   print(e.message);
-      // }
     }
   }
 
@@ -125,10 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 validator: (val) {
                                   if (val.isEmpty) {
                                     return 'This field cannot be Empty';
-                                  } else if (!val.contains('@') &&
-                                      !val.contains('com')) {
-                                    return 'Invalid Email';
                                   }
+                                  return val;
                                 },
                                 onSaved: (val) => username,
                                 decoration: InputDecoration(
@@ -151,6 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   } else if (val.length < 6) {
                                     return 'Password Length must be 6 Characters long';
                                   }
+                                  return val;
                                 },
                                 onSaved: (val) => password,
                                 decoration: InputDecoration(
@@ -171,13 +154,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                       fontFamily: 'Poppins-Medium'),
                                 ),
                                 onPressed: () {
-                                  onSubmit().then((FirebaseUser user) {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Profile(),
-                                            fullscreenDialog: true));
-                                  }).catchError((e) => print(e));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Profile(),
+                                          fullscreenDialog: true));
                                 },
                                 backgroundColor: Color(0xFF2d3447),
                                 progressColor: Theme.of(context).primaryColor,
